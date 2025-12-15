@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Chitta-Dhara</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#03dac6">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <meta name="google-site-verification" content="R4HEDRMFnT9kOw1JLMXQ9XYY-hmgItJS_Fl50X19CU4" />
+
+    <meta name="description" content="Chitta-Dhara is a minimalist, cloud-based stream of consciousness journal. Capture your thoughts, track your emotions, and receive instant stoic advice. Free and secure.">
+    <meta name="keywords" content="journal, thought dump, stream of consciousness, mental health, chitta dhara, online diary, stoic advice">
+    <meta name="author" content="Sudipta Ranjan Sahoo">
+    <meta name="robots" content="index, follow">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="login-screen" class="login-container">
+        <h1>चित्त-धारा</h1>
+        <div style="max-width: 400px; margin: 15px auto; line-height: 1.6; color: #ddd; font-size: 0.95em;">
+        <p><strong>Chitta-Dhara</strong> is a minimalist online thought journal designed for students and professionals.</p>
+        <p>Unlike standard note apps, it captures your <em>Stream of Consciousness</em> securely in the cloud. Features include real-time emotion tracking, instant stoic advice, and a distraction-free "Glassmorphism" interface.</p>
+        </div>
+        <p>Your private stream of consciousness.</p>
+        <button id="loginBtn">Sign in with Google</button>
+    </div>
+
+    <div id="app-screen" class="container hidden">
+        <header>
+            <div class="header-top">
+                <h1>चित्त-धारा</h1>
+                <button id="logoutBtn">Logout</button>
+            </div>
+            <p>विचारः प्रवहतु (Let the thoughts flow)</p>
+        </header>
+
+        <div class="input-area">
+            
+            <div class="top-row">
+                <select id="emotionSelect">
+                    <option value="😐">😐 Neutral</option>
+                    <option value="😊">😊 Happy</option>
+                    <option value="😟">😟 Anxious</option>
+                    <option value="😤">😤 Angry</option>
+                    <option value="💡">💡 Idea</option>
+                </select>
+                <input type="text" id="thoughtInput" placeholder="What's on your mind?">
+            </div>
+
+            <textarea id="reasonInput" placeholder="Why did this thought emerge? (Optional)"></textarea>
+
+            <button id="saveBtn">Save to Stream</button>
+        </div>
+
+        <div id="feed" class="feed">
+            <p class="loading">Waiting for the stream...</p>
+        </div>
+    </div>
+
+    <script type="module" src="app.js"></script>
+    <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js')
+      .then(() => console.log("Service Worker Registered"))
+      .catch((err) => console.log("Service Worker Failed", err));
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,235 @@
+/* --- BASE SETUP --- */
+body {
+    /* The Background: Dark overlay + Your Image */
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.85)), url('background.jpg');
+    
+    /* Make background fixed (Parallax effect) and cover the screen */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+
+    color: #e0e0e0;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* --- LAYOUT CONTAINER --- */
+.container {
+    width: 100%;
+    max-width: 700px; /* Slightly wider on desktop */
+    margin-bottom: 50px; /* Space at bottom for scrolling */
+}
+
+/* --- HEADER --- */
+header {
+    text-align: center;
+    margin-bottom: 25px;
+    animation: fadeInDown 0.8s ease;
+}
+
+h1 {
+    font-weight: 300;
+    letter-spacing: 2px;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    margin: 0;
+}
+
+.header-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+#logoutBtn {
+    position: absolute;
+    right: 0;
+    top: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #ddd;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 5px 12px;
+    font-size: 0.8em;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+#logoutBtn:hover { background: rgba(255, 255, 255, 0.2); color: #fff; }
+
+/* --- GLASS INPUT AREA --- */
+.input-area {
+    background: rgba(20, 20, 20, 0.75); /* Dark Glass */
+    backdrop-filter: blur(12px);         /* Strong Blur */
+    -webkit-backdrop-filter: blur(12px); /* Safari support */
+    padding: 20px;
+    border-radius: 16px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: transform 0.2s;
+}
+
+/* Flexbox for the top row (Emoji + Input) */
+.top-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+/* Styled Dropdown */
+select {
+    background: rgba(50, 50, 50, 0.8);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 1.2em;
+    cursor: pointer;
+    outline: none;
+    min-width: 70px; /* Ensure emoji isn't too small */
+}
+
+/* Styled Text Input */
+#thoughtInput {
+    flex-grow: 1;
+    background: rgba(50, 50, 50, 0.6);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #fff;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 1em;
+    outline: none;
+    transition: background 0.2s;
+}
+#thoughtInput:focus, #reasonInput:focus {
+    background: rgba(60, 60, 60, 0.9);
+    border-color: #03dac6;
+}
+
+/* Reason Box */
+#reasonInput {
+    width: 100%;
+    height: 70px;
+    background: rgba(50, 50, 50, 0.6);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #ddd;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 0.95em;
+    resize: none; /* Stops user from dragging it */
+    box-sizing: border-box;
+    font-family: inherit;
+    outline: none;
+}
+
+/* The Big Button */
+button#saveBtn {
+    background: linear-gradient(135deg, #03dac6, #018786);
+    color: #000;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1em;
+    cursor: pointer;
+    width: 100%;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(3, 218, 198, 0.3);
+    transition: transform 0.1s, box-shadow 0.2s;
+}
+button#saveBtn:active { transform: scale(0.98); }
+
+/* --- FEED CARDS --- */
+.card {
+    background: rgba(30, 30, 35, 0.85);
+    backdrop-filter: blur(8px);
+    padding: 18px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    border-left: 5px solid #03dac6;
+    animation: fadeInUp 0.4s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    transition: transform 0.2s, background 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    background: rgba(45, 45, 50, 0.95);
+}
+
+.card-header {
+    display: flex;
+    align-items: flex-start; /* Aligns text to top if long */
+    gap: 12px;
+}
+
+.emoji { font-size: 1.4em; line-height: 1.2; }
+.thought-text { font-size: 1.05em; line-height: 1.5; color: #fff; flex-grow: 1; }
+.time { display: block; font-size: 0.75em; color: #888; margin-top: 8px; margin-left: 2px; }
+
+/* Hidden Details */
+.details-box {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: none;
+}
+.card.expanded .details-box { display: block; animation: fadeIn 0.3s; }
+
+.advice-box {
+    background: rgba(63, 81, 181, 0.2); /* Subtle blue tint */
+    border: 1px solid rgba(63, 81, 181, 0.4);
+    padding: 10px;
+    border-radius: 6px;
+    color: #c5cae9;
+    font-size: 0.95em;
+    margin-top: 8px;
+}
+
+.delete-btn {
+    background: transparent;
+    color: #666;
+    border: none;
+    font-size: 1.2em;
+    padding: 0 8px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.delete-btn:hover { color: #ff5252; }
+
+/* --- MOBILE OPTIMIZATIONS (Responsive) --- */
+@media (max-width: 600px) {
+    body { padding: 10px; } /* Less padding on edges */
+    
+    .container { margin-bottom: 80px; }
+    
+    h1 { font-size: 1.8em; }
+    
+    .input-area { padding: 15px; }
+    
+    /* Stack the input on very small screens if needed, 
+       but keeping them side-by-side usually works best. 
+       We will make the inputs taller for touch. */
+    #thoughtInput, select, button#saveBtn {
+        padding: 14px; /* Bigger touch targets */
+    }
+    
+    .card { padding: 15px; }
+    .thought-text { font-size: 1em; }
+}
+
+/* Animations */
+@keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* Helpers */
+.hidden { display: none !important; }
